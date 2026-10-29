@@ -1,0 +1,176 @@
+/* ===== Base ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+    padding: 30px 20px;
+    text-align: center;
+    color: #fff;
+    /* Fondo con color: sin esto el efecto vidrio no se nota */
+    background: linear-gradient(135deg, #1e3c72, #6a3093 55%, #ef5a8f);
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Círculos de color detrás del vidrio */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+body::before {
+    width: 350px;
+    height: 350px;
+    background: #00d4ff;
+    top: -80px;
+    left: -80px;
+    opacity: .6;
+}
+
+body::after {
+    width: 300px;
+    height: 300px;
+    background: #ffb347;
+    bottom: -60px;
+    right: -60px;
+    opacity: .6;
+}
+
+h1 {
+    margin-bottom: 20px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .3);
+}
+
+/* ===== Efecto vidrio (se reutiliza en varios elementos) ===== */
+.buscador,
+.actual,
+.dia {
+    background: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(14px);
+    /* Safari */
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== Buscador ===== */
+.buscador {
+    display: flex;
+    gap: 10px;
+    max-width: 450px;
+    margin: 0 auto 16px;
+    padding: 12px;
+}
+
+input {
+    flex: 1;
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 255, 255, .4);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .15);
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, .7);
+}
+
+input:focus {
+    border-color: #fff;
+}
+
+button {
+    padding: 12px 20px;
+    border: 1px solid rgba(255, 255, 255, .4);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .25);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, .4);
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.mensaje {
+    margin: 10px;
+    font-weight: bold;
+    min-height: 1.2em;
+}
+
+/* ===== Clima actual ===== */
+.actual {
+    max-width: 400px;
+    margin: 0 auto 28px;
+    padding: 24px;
+}
+
+.actual:empty {
+    display: none;
+}
+
+/* si está vacío, no se muestra la caja */
+.actual h2 {
+    margin-bottom: 8px;
+}
+
+.actual .icono {
+    font-size: 4.5rem;
+}
+
+.actual .temp {
+    font-size: 3.2rem;
+    font-weight: bold;
+}
+
+.actual p {
+    margin: 4px 0;
+}
+
+/* ===== Pronóstico: cards una al lado de otra ===== */
+.pronostico {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.dia {
+    padding: 16px 10px;
+    transition: transform .2s, background .2s;
+}
+
+.dia:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.dia .icono {
+    font-size: 2.2rem;
+    margin: 6px 0;
+}
+
+.dia p {
+    margin: 4px 0;
+    font-size: .95rem;
+}
